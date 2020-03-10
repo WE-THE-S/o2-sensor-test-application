@@ -13,6 +13,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
 import android.telephony.SmsManager
+import android.telephony.TelephonyManager
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import kr.thes.o2_test.MainActivity
@@ -83,7 +84,7 @@ class BLEService : Service(), LocationListener {
 
 
     private val callback = object : ScanCallback() {
-        @SuppressLint("MissingPermission")
+        @SuppressLint("MissingPermission", "HardwareIds")
         override fun onBatchScanResults(results: MutableList<ScanResult>) {
             super.onBatchScanResults(results)
             if(results.size < 1){
@@ -130,6 +131,8 @@ class BLEService : Service(), LocationListener {
 
                     flags = Notification.FLAG_ONLY_ALERT_ONCE
                 }
+                val tMgr =
+                    baseContext.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
                 val notification: Uri =
                     RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
                 val r = RingtoneManager.getRingtone(applicationContext, notification)
@@ -137,9 +140,11 @@ class BLEService : Service(), LocationListener {
                 val smsManager = SmsManager.getDefault()
                 smsManager.sendTextMessage(
                     baseContext.getSharedString("phone"),
-
-                    )
-
+                    tMgr.line1Number,
+                    "Hello",
+                    null,
+                    null
+                )
                 startForeground(notifyId, notify)
             }
         }
