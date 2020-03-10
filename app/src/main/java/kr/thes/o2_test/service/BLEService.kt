@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.app.*
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.graphics.Color
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -16,6 +18,7 @@ import android.telephony.SmsManager
 import android.telephony.TelephonyManager
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import kr.thes.o2_test.MainActivity
 import kr.thes.o2_test.utils.getSharedString
 import no.nordicsemi.android.support.v18.scanner.*
@@ -38,7 +41,8 @@ data class O2Device(val isOk : Boolean){
             put("ppO2", ppO2)
             put("barometric", barometric)
             if(::location.isInitialized) {
-                put("location", location.toString())
+                put("lat", location.latitude)
+                put("lng", location.longitude)
             }
         }
         return json.toString()
@@ -70,6 +74,7 @@ class BLEService : Service(), LocationListener {
         }.build()
 
         val address = baseContext.getSharedString("address")
+
         scanner.startScan(
             arrayListOf(
                 ScanFilter.Builder().apply {
@@ -113,30 +118,35 @@ class BLEService : Service(), LocationListener {
                 if (Build.VERSION.SDK_INT >= 26) {
                     val channel = NotificationChannel(
                         packageName, "O2 Device",
-                        NotificationManager.IMPORTANCE_DEFAULT
+                        NotificationManager.IMPORTANCE_HIGH
                     )
                     val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                     manager.createNotificationChannel(channel)
                 }
+                val alarmSound =
+                    RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
                 val builder = NotificationCompat.Builder(baseContext, packageName).apply{
                     setContentTitle(count.toString())
                     setContentIntent(pendingIntent)
                     setSmallIcon(android.R.drawable.ic_dialog_alert)
                     setContentText(device.toString())
+                    setLights(Color.RED, 500, 500)
+                    val pattern = arrayOf<Long>(500, 500,500,500,500,500,500,500,500).toLongArray()
+                    setVibrate(pattern)
+                    setStyle(NotificationCompat.InboxStyle())
+                    setSound(alarmSound)
                     priority = NotificationCompat.PRIORITY_HIGH
-                    setCategory(NotificationCompat.CATEGORY_ALARM)
+                    setCategory(NotificationCompat.CATEGORY_ERROR)
+                    setDefaults(Notification.DEFAULT_ALL)
                 }
                 val notify = builder.build().apply{
-                    defaults = Notification.DEFAULT_SOUND
-
-                    flags = Notification.FLAG_ONLY_ALERT_ONCE
+                    flags = Notification.FLAG_ONGOING_EVENT
                 }
                 val tMgr =
                     baseContext.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-                val notification: Uri =
-                    RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-                val r = RingtoneManager.getRingtone(applicationContext, notification)
-                r.play()
+                //val notification: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+                //val r = RingtoneManager.getRingtone(applicationContext, notification)
+                //r.play()
                 val smsManager = SmsManager.getDefault()
                 smsManager.sendTextMessage(
                     baseContext.getSharedString("phone"),
@@ -145,6 +155,9 @@ class BLEService : Service(), LocationListener {
                     null,
                     null
                 )
+                val broadcastIntent = Intent("o2-device")
+                broadcastIntent.putExtra("data", device.toString())
+                LocalBroadcastManager.getInstance(baseContext).sendBroadcast(broadcastIntent)
                 startForeground(notifyId, notify)
             }
         }
@@ -192,7 +205,7 @@ class BLEService : Service(), LocationListener {
 
     override fun onLocationChanged(p0: Location?) {
         p0?.run {
-            location = this
+            location = p0
             Log.i("Location update", location.toString())
         }
     }

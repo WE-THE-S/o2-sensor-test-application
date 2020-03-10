@@ -23,7 +23,9 @@ class SplashActivity : AppCompatActivity() {
         Manifest.permission.BLUETOOTH,
         Manifest.permission.ACCESS_COARSE_LOCATION,
         Manifest.permission.ACCESS_FINE_LOCATION,
-        Manifest.permission.INTERNET
+        Manifest.permission.INTERNET,
+        Manifest.permission.READ_PHONE_NUMBERS,
+        Manifest.permission.READ_PHONE_STATE
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,10 +65,6 @@ class SplashActivity : AppCompatActivity() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        when(requestCode){
-            REQUEST_PERMISSION_CODE -> {
-                checkPermission()
-            }
-        }
+        checkPermission()
     }
 }

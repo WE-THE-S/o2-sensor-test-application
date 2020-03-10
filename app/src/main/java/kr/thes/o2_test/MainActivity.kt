@@ -2,15 +2,21 @@ package kr.thes.o2_test
 
 import android.app.Activity
 import android.app.ActivityManager
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.IntentCompat
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import kotlinx.android.synthetic.main.activity_main.*
 import kr.thes.o2_test.service.BLEService
 import kr.thes.o2_test.utils.clearSharedString
 import org.jetbrains.anko.intentFor
@@ -18,7 +24,11 @@ import kotlin.system.exitProcess
 
 
 class MainActivity : AppCompatActivity() {
-    private val address =  "30:AE:A4:2C:8E:DA"
+    private val receiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            text.text = intent?.getStringExtra("data")
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.i("MainActivity", "Start")
@@ -63,7 +73,13 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onResume() {
+        super.onResume()
+        LocalBroadcastManager.getInstance(baseContext).registerReceiver(receiver, IntentFilter("o2-device"))
+    }
     override fun onDestroy() {
         super.onDestroy()
+        LocalBroadcastManager.getInstance(baseContext).unregisterReceiver(receiver)
     }
+
 }
