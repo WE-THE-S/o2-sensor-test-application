@@ -8,9 +8,8 @@ import kr.thes.o2_test.service.BLEService
 class AndroidBroadcastReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         context?.let{
-            val service = Intent(it, BLEService::class.java)
-            it.startService(service)
+            //val service = Intent(it, BLEService::class.java)
+            //it.startService(service)
         }
-
     }
 }

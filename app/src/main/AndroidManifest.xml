@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <application
         android:allowBackup="true"
@@ -18,7 +20,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:fullBackupContent="@xml/backup_descriptor">
         <receiver android:name=".receiver.AndroidBroadcastReceiver"
             android:enabled="true"
             android:exported="false">
@@ -39,7 +42,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"/>
-        <activity android:name=".RegisterDeviceActivity"/>
         <activity android:name=".SettingInformationActivity"/>
     </application>
 

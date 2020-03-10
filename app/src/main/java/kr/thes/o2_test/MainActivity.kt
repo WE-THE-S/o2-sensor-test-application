@@ -1,27 +1,27 @@
 package kr.thes.o2_test
 
-import android.R.id
 import android.app.Activity
 import android.app.ActivityManager
-import android.app.PendingIntent
-import android.bluetooth.le.BluetoothLeScanner
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import kr.thes.o2_test.receiver.BLEScanReceiver
+import androidx.core.content.IntentCompat
 import kr.thes.o2_test.service.BLEService
-import no.nordicsemi.android.support.v18.scanner.*
+import kr.thes.o2_test.utils.clearSharedString
 import org.jetbrains.anko.intentFor
-import java.nio.ByteBuffer
+import kotlin.system.exitProcess
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var receiver : BLEScanReceiver
-    private lateinit var scanner : BluetoothLeScannerCompat
     private val address =  "30:AE:A4:2C:8E:DA"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.i("MainActivity", "Start")
         setContentView(R.layout.activity_main)
         if(!isServiceRunningCheck()){
             startService(intentFor<BLEService>())
@@ -32,13 +32,36 @@ class MainActivity : AppCompatActivity() {
         val manager = getSystemService(Activity.ACTIVITY_SERVICE) as ActivityManager
         val list = manager.getRunningServices(Int.MAX_VALUE)
         for(it in list){
-            if ("BLEService" == it.service.className) {
+            if (BLEService::javaClass.javaClass.name == it.service.className) {
                 return true
             }
         }
         return false
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection
+        return when (item.itemId) {
+            R.id.remove_data -> {
+                baseContext.clearSharedString()
+                val packageManager: PackageManager = applicationContext.packageManager
+                val intent =
+                    packageManager.getLaunchIntentForPackage(applicationContext.packageName)
+                val componentName = intent!!.component.toString()
+                val mainIntent: Intent = IntentCompat.makeMainSelectorActivity(componentName, IntentCompat.CATEGORY_LEANBACK_LAUNCHER)
+                applicationContext.startActivity(mainIntent)
+                exitProcess(0)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
 
     override fun onDestroy() {
         super.onDestroy()
