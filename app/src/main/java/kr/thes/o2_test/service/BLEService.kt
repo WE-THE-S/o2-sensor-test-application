@@ -105,11 +105,9 @@ class BLEService : Service(), LocationListener {
                 barometric = ByteBuffer.wrap(bytes.slice(IntRange(1, 3)).toByteArray()).short
             }
 
+            device.location = location
             Log.i("O2", device.toString())
             if(device.o2 < 19.5){
-                if(::location.isInitialized){
-                    device.location = location
-                }
                 count += 1
                 val intent = intentFor<MainActivity>()
                 val pendingIntent =
@@ -155,11 +153,12 @@ class BLEService : Service(), LocationListener {
                     null,
                     null
                 )
-                val broadcastIntent = Intent("o2-device")
-                broadcastIntent.putExtra("data", device.toString())
-                LocalBroadcastManager.getInstance(baseContext).sendBroadcast(broadcastIntent)
                 startForeground(notifyId, notify)
             }
+
+            val broadcastIntent = Intent("o2-device")
+            broadcastIntent.putExtra("data", device.toString())
+            LocalBroadcastManager.getInstance(baseContext).sendBroadcast(broadcastIntent)
         }
     }
 
