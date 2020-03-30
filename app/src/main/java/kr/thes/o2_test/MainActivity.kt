@@ -16,16 +16,25 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.IntentCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_setting_information.*
 import kr.thes.o2_test.service.BLEService
 import kr.thes.o2_test.utils.clearSharedString
 import org.jetbrains.anko.intentFor
+import org.json.JSONObject
 import kotlin.system.exitProcess
 
 
 class MainActivity : AppCompatActivity() {
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-            text.text = intent?.getStringExtra("data")
+            intent?.getStringExtra("data")?.let{
+                val json = JSONObject(it)
+                status_text.text = json.getInt("isOk").toString()
+                ppo2_text.text = json.getInt("ppO2").toString()
+                barometric_text.text = json.getInt("barometric").toString()
+                temp_text.text = json.getDouble("temp").toString()
+                o2_text.text = json.getDouble("o2").toString()
+            }
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
