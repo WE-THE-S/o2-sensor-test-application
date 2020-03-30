@@ -12,7 +12,6 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.IntentCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -33,16 +32,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.i("MainActivity", "Start")
         setContentView(R.layout.activity_main)
-        if(!isServiceRunningCheck()){
+        if(!isServiceRunning(BLEService::javaClass.javaClass)){
             startService(intentFor<BLEService>())
         }
     }
-
-    private fun isServiceRunningCheck() : Boolean {
-        val manager = getSystemService(Activity.ACTIVITY_SERVICE) as ActivityManager
-        val list = manager.getRunningServices(Int.MAX_VALUE)
-        for(it in list){
-            if (BLEService::javaClass.javaClass.name == it.service.className) {
+    private fun isServiceRunning(serviceClass: Class<*>): Boolean {
+        val manager =
+            getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        for (service in manager.getRunningServices(Int.MAX_VALUE)) {
+            Log.i("Service", service.service.className)
+            if (serviceClass.name == service.service.className) {
                 return true
             }
         }

@@ -35,7 +35,7 @@
         </receiver>
         <service android:name=".service.BLEService"
             android:enabled="true"
-            android:exported="false"
+            android:exported="true"
             android:description="@string/service_name"/>
         <activity android:name=".SplashActivity">
             <intent-filter>
