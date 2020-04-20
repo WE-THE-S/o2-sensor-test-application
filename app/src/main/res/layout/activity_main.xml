@@ -41,7 +41,7 @@
                     android:layout_margin="20dp"
                     android:layout_weight="0.2"
                     android:gravity="center"
-                    android:text="Status" />
+                    android:text="상태 코드" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -75,7 +75,7 @@
                 android:layout_margin="20dp"
                 android:layout_weight="0.2"
                 android:gravity="center"
-                android:text="PPO2" />
+                android:text="산소 부분 압력(ppO2)" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -108,7 +108,7 @@
                 android:layout_margin="20dp"
                 android:layout_weight="0.2"
                 android:gravity="center"
-                android:text="Temperature" />
+                android:text="온도 (°C)" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -141,7 +141,7 @@
                 android:layout_margin="20dp"
                 android:layout_weight="0.2"
                 android:gravity="center"
-                android:text="Barometric" />
+                android:text="기압 (millibars)" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -174,7 +174,7 @@
                 android:layout_margin="20dp"
                 android:layout_weight="0.2"
                 android:gravity="center"
-                android:text="O2" />
+                android:text="산소 농도 (%)" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
     </LinearLayout>
