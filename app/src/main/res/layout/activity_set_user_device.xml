@@ -5,23 +5,8 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/try_connect_device"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_margin="10dp"
-        card_view:cardCornerRadius="20dp"
-        card_view:cardUseCompatPadding="true">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/try_connect_device" />
-    </androidx.cardview.widget.CardView>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/device_list"
-        android:layout_weight="6"
         android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+        android:layout_height="match_parent"/>
 </LinearLayout>

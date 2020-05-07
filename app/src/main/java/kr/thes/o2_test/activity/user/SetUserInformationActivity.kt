@@ -27,7 +27,7 @@ class SetUserInformationActivity : AppCompatActivity() {
                 list.forEach {
                     baseContext.setSharedString(it.first, it.second)
                 }
-                startActivity(intentFor<UserStatusActivity>())
+                startActivity(intentFor<ConnectDeviceActivity>())
                 this@SetUserInformationActivity.finish()
             }else{
                 toast(getString(R.string.require_fill_all_input))
