@@ -12,13 +12,13 @@
         android:id="@+id/user_name"
         android:layout_width="match_parent"
         android:hint="@string/name"
-        android:inputType="textPersonName"
         android:maxLines="1"
         android:layout_weight="1"
         android:layout_height="0dp">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
+            android:layout_width="match_parent"
+            android:inputType="textPersonName"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -27,12 +27,12 @@
         android:layout_width="match_parent"
         android:hint="@string/phone_number"
         android:layout_weight="1"
-        android:inputType="phone"
         android:maxLines="1"
         android:layout_height="0dp">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
+            android:layout_width="match_parent"
+            android:inputType="phone"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -41,12 +41,12 @@
         android:layout_width="match_parent"
         android:hint="@string/blood_type"
         android:layout_weight="1"
-        android:inputType="text"
         android:maxLines="1"
         android:layout_height="0dp">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
+            android:layout_width="match_parent"
+            android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -55,12 +55,12 @@
         android:layout_width="match_parent"
         android:hint="@string/admin_name"
         android:layout_weight="1"
-        android:inputType="textPersonName"
         android:maxLines="1"
         android:layout_height="0dp">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
+            android:layout_width="match_parent"
+            android:inputType="textPersonName"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -73,7 +73,8 @@
         android:layout_height="0dp">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
+            android:layout_width="match_parent"
+            android:inputType="phone"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
