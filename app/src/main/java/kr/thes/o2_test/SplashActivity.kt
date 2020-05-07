@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.core.app.ActivityCompat
+import kr.thes.o2_test.activity.SelectUserTypeActivity
+import org.jetbrains.anko.intentFor
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -42,6 +44,7 @@ class SplashActivity : AppCompatActivity() {
 
         if(check){
             Timer("splashScreenFinish", false).schedule(1000) {
+                startActivity(intentFor<SelectUserTypeActivity>())
                 this@SplashActivity.finish()
             }
         }
