@@ -17,4 +17,10 @@
     <string name="registered_device_info">Registered device information</string>
     <string name="change_device_name">Change device name</string>
     <string name="admin_department_in_charge">Position in charge (Department)</string>
+    <string name="status_code">Status code</string>
+    <string name="ppo2_description">partial pressure of oxygen (ppO2)</string>
+    <string name="temperature_description">Temperature (°C)</string>
+    <string name="o2_pressure_description">atmospheric (millibars)</string>
+    <string name="oxygen_concentration_description">Oxygen concentration (%)</string>
+    <string name="null_str">NULL</string>
 </resources>
