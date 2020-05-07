@@ -68,7 +68,7 @@ class ConnectDeviceActivity : AppCompatActivity(),
 
     override fun onRequestConnect(address: String) {
         baseContext.setSharedString("device_address", address)
-        startActivity(intentFor<SetUserInformationActivity>())
+        startActivity(intentFor<UserStatusActivity>())
         this@ConnectDeviceActivity.finish()
     }
 }

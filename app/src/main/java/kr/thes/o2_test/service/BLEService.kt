@@ -136,7 +136,7 @@ class BLEService : Service(), LocationListener {
                     lastTime = now
                     val smsManager = SmsManager.getDefault()
                     smsManager.sendTextMessage(
-                        baseContext.getSharedString("phone"),
+                        baseContext.getSharedString("admin_phone_number"),
                         tMgr.line1Number,
                         if(::location.isInitialized) {
                             "Lat : ${location.latitude},Lng : ${location.longitude}, O2 : ${device.o2}, Help!"
