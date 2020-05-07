@@ -11,4 +11,5 @@
     <string name="try_connect_device">기기 연결 시도</string>
     <string name="device_name">기기명</string>
     <string name="admin_phone_number">관리자 연락처</string>
+    <string name="require_fill_all_input">모든 입력창을 채워주세요</string>
 </resources>

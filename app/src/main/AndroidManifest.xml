@@ -47,7 +47,7 @@
         <!-- User -->
         <activity android:name=".activity.user.MainActivity"/>
         <activity
-            android:name=".activity.user.SettingInformationActivity"
+            android:name=".activity.user.SetUserInformationActivity"
             android:label="@string/register_user"/>
 
         <!-- Shared -->

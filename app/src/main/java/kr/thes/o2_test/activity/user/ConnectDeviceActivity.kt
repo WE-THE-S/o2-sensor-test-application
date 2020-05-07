@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_set_user_information.*
+import kotlinx.android.synthetic.main.activity_set_user_device.*
 import kr.thes.o2_test.R
 import kr.thes.o2_test.adapter.BluetoothDeviceListAdapter
 import kr.thes.o2_test.utils.setSharedString
@@ -14,7 +14,7 @@ import no.nordicsemi.android.support.v18.scanner.ScanSettings
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
 
-class SettingInformationActivity : AppCompatActivity() {
+class ConnectDeviceActivity : AppCompatActivity() {
     private lateinit var scanner : BluetoothLeScannerCompat
     private lateinit var adapter : BluetoothDeviceListAdapter
     private val callback = object : no.nordicsemi.android.support.v18.scanner.ScanCallback() {
@@ -37,25 +37,8 @@ class SettingInformationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_set_user_information)
-        adapter = BluetoothDeviceListAdapter(address)
-        ok_button.setOnClickListener {
-            if(phone_number.text.toString().isNotBlank() and name.text.toString().isNotBlank()
-                and address.text.toString().isNotBlank()){
-                val list = arrayListOf(
-                    Pair("address", address.text.toString()),
-                    Pair("phone", phone_number.text.toString()),
-                    Pair("name", name.text.toString())
-                )
-                list.forEach {
-                    baseContext.setSharedString(it.first, it.second)
-                }
-                startActivity(intentFor<MainActivity>())
-                SettingInformationActivity@this.finish()
-            }else{
-                toast("안됌")
-            }
-        }
-        device_list.layoutManager = LinearLayoutManager(SettingInformationActivity@this)
+        adapter = BluetoothDeviceListAdapter()
+        device_list.layoutManager = LinearLayoutManager(this@ConnectDeviceActivity)
         device_list.adapter = adapter
 
         scanner = BluetoothLeScannerCompat.getScanner()
