@@ -12,4 +12,7 @@
     <string name="device_name">기기명</string>
     <string name="admin_phone_number">관리자 연락처</string>
     <string name="require_fill_all_input">모든 입력창을 채워주세요</string>
+    <string name="register_admin">관리자 등록</string>
+    <string name="registered_device_info">등록 기기 정보</string>
+    <string name="change_device_name">기기 이름 변경</string>
 </resources>

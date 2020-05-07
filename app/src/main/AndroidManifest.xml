@@ -44,15 +44,22 @@
             </intent-filter>
         </activity>
 
+        <!-- Admin -->
+        <activity android:name=".activity.admin.AdminMenuActivity"
+            android:label="@string/admin"/>
+
         <!-- User -->
-        <activity android:name=".activity.user.UserStatusActivity"/>
+        <activity
+            android:name=".activity.user.UserStatusActivity"
+            android:label="@string/user"/>
         <activity
             android:name=".activity.user.SetUserInformationActivity"
             android:label="@string/register_user"/>
-        <activity android:name=".activity.user.ConnectDeviceActivity"/>
+        <activity android:name=".activity.user.ConnectDeviceActivity"
+            android:label="@string/user"/>
 
         <!-- Shared -->
-        <activity android:name=".activity.SelectUserTypeActivity"/>
+        <activity android:name=".activity.SelectUserTypeActivity" />
     </application>
 
 </manifest>
