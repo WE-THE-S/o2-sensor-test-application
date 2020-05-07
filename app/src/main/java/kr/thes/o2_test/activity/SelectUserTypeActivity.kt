@@ -16,7 +16,6 @@ class SelectUserTypeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_select_user_type)
         type_admin.setOnClickListener {
             startActivity(intentFor<AdminMenuActivity>())
-            this@SelectUserTypeActivity.finish()
         }
         type_user.setOnClickListener {
             if(getSharedString("device_address").isNotBlank()){
@@ -24,7 +23,6 @@ class SelectUserTypeActivity : AppCompatActivity() {
             }else{
                 startActivity(intentFor<SetUserInformationActivity>())
             }
-            this@SelectUserTypeActivity.finish()
         }
     }
 }

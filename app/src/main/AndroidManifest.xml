@@ -47,6 +47,8 @@
         <!-- Admin -->
         <activity android:name=".activity.admin.AdminMenuActivity"
             android:label="@string/admin"/>
+        <activity android:name=".activity.admin.RegisterAdminActivity"
+            android:label="@string/register_admin"/>
 
         <!-- User -->
         <activity

@@ -15,4 +15,5 @@
     <string name="register_admin">관리자 등록</string>
     <string name="registered_device_info">등록 기기 정보</string>
     <string name="change_device_name">기기 이름 변경</string>
+    <string name="admin_department_in_charge">담당위치(부서)</string>
 </resources>
