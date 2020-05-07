@@ -4,4 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.user.MainActivity"/>
+    tools:context=".SplashActivity">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        android:layout_margin="20dp"
+        android:src="@drawable/o2_logo"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

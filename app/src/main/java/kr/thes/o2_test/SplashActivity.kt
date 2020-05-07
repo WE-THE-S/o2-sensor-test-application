@@ -11,6 +11,8 @@ import kr.thes.o2_test.activity.user.MainActivity
 import kr.thes.o2_test.activity.user.SettingInformationActivity
 import kr.thes.o2_test.utils.getSharedString
 import org.jetbrains.anko.intentFor
+import java.util.*
+import kotlin.concurrent.schedule
 
 class SplashActivity : AppCompatActivity() {
     private val REQUEST_PERMISSION_CODE = 1001
@@ -43,13 +45,15 @@ class SplashActivity : AppCompatActivity() {
         }
 
         if(check){
-            val address = baseContext.getSharedString("address")
-            if(address.isBlank()){
-                startActivity(intentFor<SettingInformationActivity>())
-            }else{
-                startActivity(intentFor<MainActivity>())
+            Timer("splashScreenFinish", false).schedule(1000) {
+                val address = baseContext.getSharedString("address")
+                if (address.isBlank()) {
+                    startActivity(intentFor<SettingInformationActivity>())
+                } else {
+                    startActivity(intentFor<MainActivity>())
+                }
+                this@SplashActivity.finish()
             }
-            SplashActivity@this.finish()
         }
     }
 
