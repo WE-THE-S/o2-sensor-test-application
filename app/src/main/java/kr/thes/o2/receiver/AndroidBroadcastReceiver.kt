@@ -1,9 +1,8 @@
-package kr.thes.o2_test.receiver
+package kr.thes.o2.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import kr.thes.o2_test.service.BLEService
 
 class AndroidBroadcastReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {

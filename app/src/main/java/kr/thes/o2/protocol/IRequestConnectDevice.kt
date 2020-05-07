@@ -1,4 +1,4 @@
-package kr.thes.o2_test.protocol
+package kr.thes.o2.protocol
 
 interface IRequestConnectDevice {
     fun onRequestConnect(address : String)

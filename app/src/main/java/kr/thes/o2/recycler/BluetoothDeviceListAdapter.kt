@@ -1,11 +1,11 @@
-package kr.thes.o2_test.recycler
+package kr.thes.o2.recycler
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kr.thes.o2_test.R
-import kr.thes.o2_test.protocol.IRequestConnectDevice
+import kr.thes.o2.R
+import kr.thes.o2.protocol.IRequestConnectDevice
 
 class BluetoothDeviceListAdapter(private val handler : IRequestConnectDevice) : RecyclerView.Adapter<BluetoothDeviceListHolder>() {
     private val array : MutableList<String> = mutableListOf()

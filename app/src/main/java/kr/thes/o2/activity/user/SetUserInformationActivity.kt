@@ -1,10 +1,10 @@
-package kr.thes.o2_test.activity.user
+package kr.thes.o2.activity.user
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_set_user_information.*
-import kr.thes.o2_test.R
-import kr.thes.o2_test.utils.setSharedString
+import kr.thes.o2.R
+import kr.thes.o2.utils.setSharedString
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
 

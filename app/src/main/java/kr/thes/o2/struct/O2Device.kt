@@ -1,4 +1,4 @@
-package kr.thes.o2_test.struct
+package kr.thes.o2.struct
 
 import android.location.Location
 import org.json.JSONObject

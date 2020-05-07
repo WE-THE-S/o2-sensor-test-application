@@ -1,4 +1,4 @@
-package kr.thes.o2_test.activity.user
+package kr.thes.o2.activity.user
 
 import android.app.ActivityManager
 import android.content.BroadcastReceiver
@@ -15,9 +15,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.IntentCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import kotlinx.android.synthetic.main.activity_user_status.*
-import kr.thes.o2_test.R
-import kr.thes.o2_test.service.BLEService
-import kr.thes.o2_test.utils.clearSharedString
+import kr.thes.o2.R
+import kr.thes.o2.service.BLEService
+import kr.thes.o2.utils.clearSharedString
 import org.jetbrains.anko.intentFor
 import org.json.JSONObject
 import kotlin.system.exitProcess

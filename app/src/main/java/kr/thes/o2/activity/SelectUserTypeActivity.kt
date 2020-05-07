@@ -1,13 +1,13 @@
-package kr.thes.o2_test.activity
+package kr.thes.o2.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_select_user_type.*
-import kr.thes.o2_test.R
-import kr.thes.o2_test.activity.admin.AdminMenuActivity
-import kr.thes.o2_test.activity.user.SetUserInformationActivity
-import kr.thes.o2_test.activity.user.UserStatusActivity
-import kr.thes.o2_test.utils.getSharedString
+import kr.thes.o2.R
+import kr.thes.o2.activity.admin.AdminMenuActivity
+import kr.thes.o2.activity.user.SetUserInformationActivity
+import kr.thes.o2.activity.user.UserStatusActivity
+import kr.thes.o2.utils.getSharedString
 import org.jetbrains.anko.intentFor
 
 class SelectUserTypeActivity : AppCompatActivity() {

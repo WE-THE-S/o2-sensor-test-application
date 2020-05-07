@@ -1,10 +1,10 @@
-package kr.thes.o2_test.recycler
+package kr.thes.o2.recycler
 
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kr.thes.o2_test.R
-import kr.thes.o2_test.protocol.IRequestConnectDevice
+import kr.thes.o2.R
+import kr.thes.o2.protocol.IRequestConnectDevice
 
 class BluetoothDeviceListHolder(itemView: View, handler : IRequestConnectDevice) : RecyclerView.ViewHolder(itemView) {
     val text : TextView = itemView.findViewById(R.id.text)

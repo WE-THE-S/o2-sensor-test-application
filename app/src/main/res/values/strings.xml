@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">O2 Test</string>
+    <string name="app_name">O2</string>
     <string name="service_name">Service TEST</string>
     <string name="user">사용자</string>
     <string name="admin">관리자</string>

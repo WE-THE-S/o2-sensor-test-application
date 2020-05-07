@@ -1,4 +1,4 @@
-package kr.thes.o2_test.service
+package kr.thes.o2.service
 
 import android.annotation.SuppressLint
 import android.app.*
@@ -18,9 +18,9 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import kr.thes.o2_test.activity.user.UserStatusActivity
-import kr.thes.o2_test.struct.O2Device
-import kr.thes.o2_test.utils.getSharedString
+import kr.thes.o2.activity.user.UserStatusActivity
+import kr.thes.o2.struct.O2Device
+import kr.thes.o2.utils.getSharedString
 import no.nordicsemi.android.support.v18.scanner.*
 import org.jetbrains.anko.intentFor
 import java.nio.ByteBuffer
