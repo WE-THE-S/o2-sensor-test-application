@@ -6,12 +6,11 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import kr.thes.o2_test.R
 
-class BluetoothDeviceListHolder(itemView: View, address : TextView) : RecyclerView.ViewHolder(itemView) {
+class BluetoothDeviceListHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val text : TextView = itemView.findViewById(R.id.text)
     init{
         text.setOnClickListener {
             val adr = text.text.split("-").last()
-            address.text = adr
         }
     }
 

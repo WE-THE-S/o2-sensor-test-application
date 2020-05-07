@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kr.thes.o2_test.R
 
-class BluetoothDeviceListAdapter(val address : TextView) : RecyclerView.Adapter<BluetoothDeviceListHolder>() {
+class BluetoothDeviceListAdapter() : RecyclerView.Adapter<BluetoothDeviceListHolder>() {
     private val array : MutableList<String> = mutableListOf()
     override fun getItemCount(): Int {
         return array.size
@@ -17,7 +17,7 @@ class BluetoothDeviceListAdapter(val address : TextView) : RecyclerView.Adapter<
         val context = parent.context
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.item_holder, parent, false)
-        return BluetoothDeviceListHolder(view, address)
+        return BluetoothDeviceListHolder(view)
     }
 
 
