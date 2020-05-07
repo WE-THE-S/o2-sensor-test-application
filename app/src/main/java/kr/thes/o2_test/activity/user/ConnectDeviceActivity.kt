@@ -38,7 +38,7 @@ class ConnectDeviceActivity : AppCompatActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_set_user_information)
+        setContentView(R.layout.activity_set_user_device)
         adapter = BluetoothDeviceListAdapter(this@ConnectDeviceActivity)
         device_list.layoutManager = LinearLayoutManager(this@ConnectDeviceActivity)
         device_list.adapter = adapter
