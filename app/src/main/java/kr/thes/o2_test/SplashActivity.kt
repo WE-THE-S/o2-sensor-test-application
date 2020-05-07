@@ -7,10 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.core.app.ActivityCompat
-import kr.thes.o2_test.activity.user.MainActivity
-import kr.thes.o2_test.activity.user.SetUserInformationActivity
-import kr.thes.o2_test.utils.getSharedString
-import org.jetbrains.anko.intentFor
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -46,12 +42,6 @@ class SplashActivity : AppCompatActivity() {
 
         if(check){
             Timer("splashScreenFinish", false).schedule(1000) {
-                val address = baseContext.getSharedString("address")
-                if (address.isBlank()) {
-                    startActivity(intentFor<SetUserInformationActivity>())
-                } else {
-                    startActivity(intentFor<MainActivity>())
-                }
                 this@SplashActivity.finish()
             }
         }

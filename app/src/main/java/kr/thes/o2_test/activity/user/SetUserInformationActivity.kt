@@ -2,15 +2,9 @@ package kr.thes.o2_test.activity.user
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_set_user_information.*
 import kr.thes.o2_test.R
-import kr.thes.o2_test.adapter.BluetoothDeviceListAdapter
 import kr.thes.o2_test.utils.setSharedString
-import no.nordicsemi.android.support.v18.scanner.BluetoothLeScannerCompat
-import no.nordicsemi.android.support.v18.scanner.ScanFilter
-import no.nordicsemi.android.support.v18.scanner.ScanSettings
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
 
@@ -33,7 +27,7 @@ class SetUserInformationActivity : AppCompatActivity() {
                 list.forEach {
                     baseContext.setSharedString(it.first, it.second)
                 }
-                startActivity(intentFor<MainActivity>())
+                startActivity(intentFor<UserStatusActivity>())
                 this@SetUserInformationActivity.finish()
             }else{
                 toast(getString(R.string.require_fill_all_input))

@@ -23,7 +23,7 @@ import org.json.JSONObject
 import kotlin.system.exitProcess
 
 
-class MainActivity : AppCompatActivity() {
+class UserStatusActivity : AppCompatActivity() {
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             intent?.getStringExtra("data")?.let{
