@@ -2,17 +2,15 @@ package kr.thes.o2_test
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.IpSecManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.core.app.ActivityCompat
-import kr.thes.o2_test.service.BLEService
+import kr.thes.o2_test.activity.user.MainActivity
+import kr.thes.o2_test.activity.user.SettingInformationActivity
 import kr.thes.o2_test.utils.getSharedString
 import org.jetbrains.anko.intentFor
-import java.util.*
 
 class SplashActivity : AppCompatActivity() {
     private val REQUEST_PERMISSION_CODE = 1001
@@ -46,7 +44,7 @@ class SplashActivity : AppCompatActivity() {
 
         if(check){
             val address = baseContext.getSharedString("address")
-            if(address.isNullOrBlank()){
+            if(address.isBlank()){
                 startActivity(intentFor<SettingInformationActivity>())
             }else{
                 startActivity(intentFor<MainActivity>())

@@ -1,10 +1,11 @@
-package kr.thes.o2_test
+package kr.thes.o2_test.activity.user
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_setting_information.*
+import kr.thes.o2_test.R
 import kr.thes.o2_test.adapter.BluetoothDeviceListAdapter
 import kr.thes.o2_test.utils.setSharedString
 import no.nordicsemi.android.support.v18.scanner.BluetoothLeScannerCompat

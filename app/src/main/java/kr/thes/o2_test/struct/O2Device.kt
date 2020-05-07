@@ -23,6 +23,7 @@ data class O2Device(val isOk : Byte){
     fun warringO2() : Boolean {
         return (isOk and 0x4) != 0.toByte()
     }
+
     override fun toString(): String {
         val json = JSONObject().apply{
             put("isOk", isOk)

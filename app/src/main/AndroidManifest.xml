@@ -43,8 +43,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".SettingInformationActivity"/>
+        <activity android:name=".activity.user.MainActivity"/>
+        <activity android:name=".activity.user.SettingInformationActivity"/>
     </application>
 
 </manifest>

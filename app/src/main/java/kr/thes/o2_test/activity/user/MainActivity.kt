@@ -1,6 +1,5 @@
-package kr.thes.o2_test
+package kr.thes.o2_test.activity.user
 
-import android.app.Activity
 import android.app.ActivityManager
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -16,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.IntentCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_setting_information.*
+import kr.thes.o2_test.R
 import kr.thes.o2_test.service.BLEService
 import kr.thes.o2_test.utils.clearSharedString
 import org.jetbrains.anko.intentFor

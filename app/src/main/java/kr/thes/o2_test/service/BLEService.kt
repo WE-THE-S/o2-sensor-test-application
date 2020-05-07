@@ -4,13 +4,11 @@ import android.annotation.SuppressLint
 import android.app.*
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.graphics.Color
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.media.RingtoneManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
@@ -20,13 +18,11 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import kr.thes.o2_test.MainActivity
+import kr.thes.o2_test.activity.user.MainActivity
 import kr.thes.o2_test.struct.O2Device
 import kr.thes.o2_test.utils.getSharedString
 import no.nordicsemi.android.support.v18.scanner.*
 import org.jetbrains.anko.intentFor
-import org.json.JSONObject
-import java.lang.Math.floor
 import java.nio.ByteBuffer
 import java.util.*
 
