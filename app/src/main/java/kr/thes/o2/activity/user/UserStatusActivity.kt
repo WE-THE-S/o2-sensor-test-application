@@ -16,6 +16,8 @@ import androidx.core.content.IntentCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import kotlinx.android.synthetic.main.activity_user_status.*
 import kr.thes.o2.R
+import kr.thes.o2.SplashActivity
+import kr.thes.o2.activity.SelectUserTypeActivity
 import kr.thes.o2.service.BLEService
 import kr.thes.o2.utils.clearSharedString
 import org.jetbrains.anko.intentFor
@@ -61,13 +63,8 @@ class UserStatusActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.remove_data -> {
                 baseContext.clearSharedString()
-                val packageManager: PackageManager = applicationContext.packageManager
-                val intent =
-                    packageManager.getLaunchIntentForPackage(applicationContext.packageName)
-                val componentName = intent!!.component.toString()
-                val mainIntent: Intent = IntentCompat.makeMainSelectorActivity(componentName, IntentCompat.CATEGORY_LEANBACK_LAUNCHER)
-                applicationContext.startActivity(mainIntent)
-                exitProcess(0)
+                startActivity(intentFor<SplashActivity>())
+                this@UserStatusActivity.finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)
