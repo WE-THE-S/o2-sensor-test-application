@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_setting_information.*
+import kotlinx.android.synthetic.main.activity_set_user_information.*
 import kr.thes.o2_test.R
 import kr.thes.o2_test.adapter.BluetoothDeviceListAdapter
 import kr.thes.o2_test.utils.setSharedString
@@ -36,7 +36,7 @@ class SettingInformationActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_setting_information)
+        setContentView(R.layout.activity_set_user_information)
         adapter = BluetoothDeviceListAdapter(address)
         ok_button.setOnClickListener {
             if(phone_number.text.toString().isNotBlank() and name.text.toString().isNotBlank()

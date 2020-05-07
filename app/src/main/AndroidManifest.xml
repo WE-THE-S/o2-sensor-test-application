@@ -43,8 +43,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- User -->
         <activity android:name=".activity.user.MainActivity"/>
-        <activity android:name=".activity.user.SettingInformationActivity"/>
+        <activity
+            android:name=".activity.user.SettingInformationActivity"
+            android:label="@string/register_user"/>
+
+        <!-- Shared -->
         <activity android:name=".activity.SelectUserTypeActivity"/>
     </application>
 
