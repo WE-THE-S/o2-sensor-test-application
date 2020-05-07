@@ -14,7 +14,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.IntentCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_user_status.*
 import kr.thes.o2_test.R
 import kr.thes.o2_test.service.BLEService
 import kr.thes.o2_test.utils.clearSharedString
@@ -39,7 +39,7 @@ class UserStatusActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.i("MainActivity", "Start")
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_user_status)
         if(!isServiceRunning(BLEService::javaClass.javaClass)){
             startService(intentFor<BLEService>())
         }
@@ -84,9 +84,11 @@ class UserStatusActivity : AppCompatActivity() {
         super.onResume()
         LocalBroadcastManager.getInstance(baseContext).registerReceiver(receiver, IntentFilter("o2-device"))
     }
+
     override fun onDestroy() {
         super.onDestroy()
         LocalBroadcastManager.getInstance(baseContext).unregisterReceiver(receiver)
+        stopService(intentFor<BLEService>())
     }
 
 }

@@ -53,7 +53,7 @@ class BLEService : Service(), LocationListener {
             setUseHardwareFilteringIfSupported(true)
             setUseHardwareBatchingIfSupported(true)
         }.build()
-        val address = baseContext.getSharedString("address")
+        val address = baseContext.getSharedString("device_address")
         Log.i("Address", address)
         scanner.startScan(
             arrayListOf(
