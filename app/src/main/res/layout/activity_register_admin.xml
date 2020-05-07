@@ -8,33 +8,45 @@
     android:orientation="vertical"
     android:weightSum="10">
 
-    <com.google.android.material.textfield.TextInputEditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/admin_name"
         android:layout_width="match_parent"
         android:hint="@string/admin_name"
         android:inputType="textPersonName"
         android:maxLines="1"
         android:layout_weight="1"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputEditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/admin_phone_number"
         android:layout_width="match_parent"
         android:hint="@string/admin_phone_number"
         android:layout_weight="1"
         android:inputType="phone"
         android:maxLines="1"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-
-    <com.google.android.material.textfield.TextInputEditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/admin_department_in_charge"
         android:layout_width="match_parent"
         android:hint="@string/admin_department_in_charge"
         android:layout_weight="1"
         android:inputType="phone"
         android:maxLines="1"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
 
     <View
