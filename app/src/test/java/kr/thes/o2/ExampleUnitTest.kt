@@ -1,4 +1,4 @@
-package kr.thes.o2_test
+package kr.thes.o2
 
 import org.junit.Test
 

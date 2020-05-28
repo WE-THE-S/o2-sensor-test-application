@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="kr.thes.o2_test">
+    package="kr.thes.o2">
     <uses-feature
         android:name="android.hardware.bluetooth_le"
         android:required="true" />
@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:fullBackupContent="@xml/backup_descriptor">
-        <receiver android:name=".receiver.AndroidBroadcastReceiver"
+        <receiver android:name="kr.thes.o2.receiver.AndroidBroadcastReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
@@ -33,18 +33,35 @@
                 <action android:name="android.intent.action.ACTION_PACKAGE_ADDED"/>
             </intent-filter>
         </receiver>
-        <service android:name=".service.BLEService"
+        <service android:name="kr.thes.o2.service.BLEService"
             android:enabled="true"
             android:exported="true"
             android:description="@string/service_name"/>
-        <activity android:name=".SplashActivity">
+        <activity android:name="kr.thes.o2.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.user.MainActivity"/>
-        <activity android:name=".activity.user.SettingInformationActivity"/>
+
+        <!-- Admin -->
+        <activity android:name="kr.thes.o2.activity.admin.AdminMenuActivity"
+            android:label="@string/admin"/>
+        <activity android:name="kr.thes.o2.activity.admin.RegisterAdminActivity"
+            android:label="@string/register_admin"/>
+
+        <!-- User -->
+        <activity
+            android:name="kr.thes.o2.activity.user.UserStatusActivity"
+            android:label="@string/user"/>
+        <activity
+            android:name="kr.thes.o2.activity.user.SetUserInformationActivity"
+            android:label="@string/register_user"/>
+        <activity android:name="kr.thes.o2.activity.user.ConnectDeviceActivity"
+            android:label="@string/try_connect_device"/>
+
+        <!-- Shared -->
+        <activity android:name="kr.thes.o2.activity.SelectUserTypeActivity" />
     </application>
 
 </manifest>

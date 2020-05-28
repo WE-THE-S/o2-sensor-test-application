@@ -1,4 +1,26 @@
 <resources>
-    <string name="app_name">O2 Test</string>
-    <string name="service_name">Service TEST</string>
+    <string name="app_name">O2</string>
+    <string name="service_name">O2 BLE SCAN</string>
+    <string name="user">Worker</string>
+    <string name="admin">Administrator</string>
+    <string name="register_user">Worker registration</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone number</string>
+    <string name="blood_type">Blood tyep</string>
+    <string name="admin_name">Administrator name</string>
+    <string name="try_connect_device">Try connecting device</string>
+    <string name="connect_device">Connect devices</string>
+    <string name="device_name">Device name</string>
+    <string name="admin_phone_number">Administrator contact</string>
+    <string name="require_fill_all_input">Fill in all fields</string>
+    <string name="register_admin">Administrator Registration</string>
+    <string name="registered_device_info">Registered device information</string>
+    <string name="change_device_name">Change device name</string>
+    <string name="admin_department_in_charge">Position in charge (Department)</string>
+    <string name="status_code">Status code</string>
+    <string name="ppo2_description">partial pressure of oxygen (ppO2)</string>
+    <string name="temperature_description">Temperature (°C)</string>
+    <string name="o2_pressure_description">atmospheric (millibars)</string>
+    <string name="oxygen_concentration_description">Oxygen concentration (%)</string>
+    <string name="null_str">NULL</string>
 </resources>

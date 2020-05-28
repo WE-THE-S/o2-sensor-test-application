@@ -1,17 +1,17 @@
-package kr.thes.o2_test.adapter
+package kr.thes.o2.recycler
 
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import kr.thes.o2_test.R
+import kr.thes.o2.R
+import kr.thes.o2.protocol.IRequestConnectDevice
 
-class BluetoothDeviceListHolder(itemView: View, address : TextView) : RecyclerView.ViewHolder(itemView) {
+class BluetoothDeviceListHolder(itemView: View, handler : IRequestConnectDevice) : RecyclerView.ViewHolder(itemView) {
     val text : TextView = itemView.findViewById(R.id.text)
     init{
         text.setOnClickListener {
             val adr = text.text.split("-").last()
-            address.text = adr
+            handler.onRequestConnect(adr)
         }
     }
 

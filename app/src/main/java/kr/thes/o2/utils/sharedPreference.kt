@@ -1,4 +1,4 @@
-package kr.thes.o2_test.utils
+package kr.thes.o2.utils
 
 import android.content.Context
 

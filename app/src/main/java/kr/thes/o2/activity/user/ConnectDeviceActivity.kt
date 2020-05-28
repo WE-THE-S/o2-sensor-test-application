@@ -1,20 +1,21 @@
-package kr.thes.o2_test.activity.user
+package kr.thes.o2.activity.user
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_setting_information.*
-import kr.thes.o2_test.R
-import kr.thes.o2_test.adapter.BluetoothDeviceListAdapter
-import kr.thes.o2_test.utils.setSharedString
+import kotlinx.android.synthetic.main.activity_set_user_device.*
+import kr.thes.o2.R
+import kr.thes.o2.recycler.BluetoothDeviceListAdapter
+import kr.thes.o2.protocol.IRequestConnectDevice
+import kr.thes.o2.utils.setSharedString
 import no.nordicsemi.android.support.v18.scanner.BluetoothLeScannerCompat
 import no.nordicsemi.android.support.v18.scanner.ScanFilter
 import no.nordicsemi.android.support.v18.scanner.ScanSettings
 import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.toast
 
-class SettingInformationActivity : AppCompatActivity() {
+class ConnectDeviceActivity : AppCompatActivity(),
+    IRequestConnectDevice {
     private lateinit var scanner : BluetoothLeScannerCompat
     private lateinit var adapter : BluetoothDeviceListAdapter
     private val callback = object : no.nordicsemi.android.support.v18.scanner.ScanCallback() {
@@ -34,28 +35,12 @@ class SettingInformationActivity : AppCompatActivity() {
             }
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_setting_information)
-        adapter = BluetoothDeviceListAdapter(address)
-        ok_button.setOnClickListener {
-            if(phone_number.text.toString().isNotBlank() and name.text.toString().isNotBlank()
-                and address.text.toString().isNotBlank()){
-                val list = arrayListOf(
-                    Pair("address", address.text.toString()),
-                    Pair("phone", phone_number.text.toString()),
-                    Pair("name", name.text.toString())
-                )
-                list.forEach {
-                    baseContext.setSharedString(it.first, it.second)
-                }
-                startActivity(intentFor<MainActivity>())
-                SettingInformationActivity@this.finish()
-            }else{
-                toast("안됌")
-            }
-        }
-        device_list.layoutManager = LinearLayoutManager(SettingInformationActivity@this)
+        setContentView(R.layout.activity_set_user_device)
+        adapter = BluetoothDeviceListAdapter(this@ConnectDeviceActivity)
+        device_list.layoutManager = LinearLayoutManager(this@ConnectDeviceActivity)
         device_list.adapter = adapter
 
         scanner = BluetoothLeScannerCompat.getScanner()
@@ -79,5 +64,11 @@ class SettingInformationActivity : AppCompatActivity() {
         if(::scanner.isInitialized) {
             scanner.stopScan(callback)
         }
+    }
+
+    override fun onRequestConnect(address: String) {
+        baseContext.setSharedString("device_address", address)
+        startActivity(intentFor<UserStatusActivity>())
+        this@ConnectDeviceActivity.finish()
     }
 }

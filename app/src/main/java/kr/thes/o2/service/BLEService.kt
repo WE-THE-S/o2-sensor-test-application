@@ -1,4 +1,4 @@
-package kr.thes.o2_test.service
+package kr.thes.o2.service
 
 import android.annotation.SuppressLint
 import android.app.*
@@ -18,9 +18,9 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import kr.thes.o2_test.activity.user.MainActivity
-import kr.thes.o2_test.struct.O2Device
-import kr.thes.o2_test.utils.getSharedString
+import kr.thes.o2.activity.user.UserStatusActivity
+import kr.thes.o2.struct.O2Device
+import kr.thes.o2.utils.getSharedString
 import no.nordicsemi.android.support.v18.scanner.*
 import org.jetbrains.anko.intentFor
 import java.nio.ByteBuffer
@@ -53,7 +53,7 @@ class BLEService : Service(), LocationListener {
             setUseHardwareFilteringIfSupported(true)
             setUseHardwareBatchingIfSupported(true)
         }.build()
-        val address = baseContext.getSharedString("address")
+        val address = baseContext.getSharedString("device_address")
         Log.i("Address", address)
         scanner.startScan(
             arrayListOf(
@@ -95,7 +95,7 @@ class BLEService : Service(), LocationListener {
             if(device.warringO2() or device.requestSos()){
                 count += 1
 
-                val intent = intentFor<MainActivity>()
+                val intent = intentFor<UserStatusActivity>()
                 val pendingIntent =
                     PendingIntent.getActivity(baseContext, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
@@ -136,7 +136,7 @@ class BLEService : Service(), LocationListener {
                     lastTime = now
                     val smsManager = SmsManager.getDefault()
                     smsManager.sendTextMessage(
-                        baseContext.getSharedString("phone"),
+                        baseContext.getSharedString("admin_phone_number"),
                         tMgr.line1Number,
                         if(::location.isInitialized) {
                             "Lat : ${location.latitude},Lng : ${location.longitude}, O2 : ${device.o2}, Help!"

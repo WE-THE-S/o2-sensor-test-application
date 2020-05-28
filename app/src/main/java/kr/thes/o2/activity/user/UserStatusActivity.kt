@@ -1,4 +1,4 @@
-package kr.thes.o2_test.activity.user
+package kr.thes.o2.activity.user
 
 import android.app.ActivityManager
 import android.content.BroadcastReceiver
@@ -14,16 +14,18 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.IntentCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import kotlinx.android.synthetic.main.activity_main.*
-import kr.thes.o2_test.R
-import kr.thes.o2_test.service.BLEService
-import kr.thes.o2_test.utils.clearSharedString
+import kotlinx.android.synthetic.main.activity_user_status.*
+import kr.thes.o2.R
+import kr.thes.o2.SplashActivity
+import kr.thes.o2.activity.SelectUserTypeActivity
+import kr.thes.o2.service.BLEService
+import kr.thes.o2.utils.clearSharedString
 import org.jetbrains.anko.intentFor
 import org.json.JSONObject
 import kotlin.system.exitProcess
 
 
-class MainActivity : AppCompatActivity() {
+class UserStatusActivity : AppCompatActivity() {
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             intent?.getStringExtra("data")?.let{
@@ -39,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.i("MainActivity", "Start")
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_user_status)
         if(!isServiceRunning(BLEService::javaClass.javaClass)){
             startService(intentFor<BLEService>())
         }
@@ -61,13 +63,8 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.remove_data -> {
                 baseContext.clearSharedString()
-                val packageManager: PackageManager = applicationContext.packageManager
-                val intent =
-                    packageManager.getLaunchIntentForPackage(applicationContext.packageName)
-                val componentName = intent!!.component.toString()
-                val mainIntent: Intent = IntentCompat.makeMainSelectorActivity(componentName, IntentCompat.CATEGORY_LEANBACK_LAUNCHER)
-                applicationContext.startActivity(mainIntent)
-                exitProcess(0)
+                startActivity(intentFor<SplashActivity>())
+                this@UserStatusActivity.finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -84,9 +81,11 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         LocalBroadcastManager.getInstance(baseContext).registerReceiver(receiver, IntentFilter("o2-device"))
     }
+
     override fun onDestroy() {
         super.onDestroy()
         LocalBroadcastManager.getInstance(baseContext).unregisterReceiver(receiver)
+        stopService(intentFor<BLEService>())
     }
 
 }

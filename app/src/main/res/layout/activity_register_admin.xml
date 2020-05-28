@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.user.SetUserInformationActivity"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/admin_name"
+        android:layout_width="match_parent"
+        android:hint="@string/admin_name"
+        android:maxLines="1"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:inputType="textPersonName"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/admin_phone_number"
+        android:layout_width="match_parent"
+        android:hint="@string/admin_phone_number"
+        android:layout_weight="1"
+        android:maxLines="1"
+        android:layout_height="0dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:inputType="phone"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/admin_department_in_charge"
+        android:layout_width="match_parent"
+        android:hint="@string/admin_department_in_charge"
+        android:layout_weight="1"
+        android:maxLines="1"
+        android:layout_height="0dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <View
+        android:layout_weight="6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+    <Button
+        android:id="@+id/ok_button"
+        android:text="@string/register_admin"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="end"
+        android:layout_width="match_parent"
+        />
+
+</LinearLayout>
