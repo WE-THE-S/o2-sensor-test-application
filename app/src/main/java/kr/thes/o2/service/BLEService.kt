@@ -24,7 +24,9 @@ import kr.thes.o2.utils.getSharedString
 import no.nordicsemi.android.support.v18.scanner.*
 import org.jetbrains.anko.intentFor
 import java.nio.ByteBuffer
+import java.nio.charset.StandardCharsets
 import java.util.*
+import kotlin.experimental.and
 
 
 class BLEService : Service(), LocationListener {
@@ -67,7 +69,16 @@ class BLEService : Service(), LocationListener {
         return START_REDELIVER_INTENT //서비스가 종료될시 재생성
     }
 
-
+    private val HEX_ARRAY = "0123456789ABCDEF".toByteArray()
+    private fun bytesToHex(bytes: ByteArray): String {
+        val hexChars = ByteArray(bytes.size * 2)
+        for (j in bytes.indices) {
+            val v: Int = bytes[j].toInt() and 0xFF
+            hexChars[j * 2] = HEX_ARRAY[v ushr 4]
+            hexChars[j * 2 + 1] = HEX_ARRAY[v and 0x0F]
+        }
+        return String(hexChars, StandardCharsets.UTF_8)
+    }
     private val callback = object : ScanCallback() {
         @SuppressLint("MissingPermission", "HardwareIds")
         override fun onBatchScanResults(results: MutableList<ScanResult>) {
@@ -80,7 +91,9 @@ class BLEService : Service(), LocationListener {
             Log.i("Time", "${now - lastTime}")
             val it = results[0]
             val rawBytes = it.scanRecord!!.bytes!!
-            val bytes = rawBytes.slice(IntRange(rawBytes.size - 14, rawBytes.size - 1)).reversed().toByteArray()
+            val bytes = rawBytes.slice(IntRange(rawBytes.size - 17, rawBytes.size - 4)).reversed().toByteArray()
+            Log.i(TAG, bytesToHex(rawBytes))
+            Log.i(TAG, bytesToHex(bytes))
             val device = O2Device(bytes[0]).apply {
                 temp = ByteBuffer.wrap(bytes.slice(IntRange(9, 13)).toByteArray()).float
                 o2 = ByteBuffer.wrap(bytes.slice(IntRange(5, 9)).toByteArray()).float
@@ -164,6 +177,7 @@ class BLEService : Service(), LocationListener {
     override fun onBind(p0: Intent?): IBinder? {
         return null
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
